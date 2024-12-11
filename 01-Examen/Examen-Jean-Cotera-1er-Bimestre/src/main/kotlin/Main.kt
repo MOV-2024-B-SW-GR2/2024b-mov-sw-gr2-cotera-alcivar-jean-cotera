@@ -7,7 +7,7 @@ fun main() {
     val scanner = Scanner(System.`in`)
     val empresaController = EmpresaController()
     val proyectoController = ProyectoController()
-    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val fechaFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     var opcion: Int
 
     do {
@@ -43,7 +43,7 @@ fun main() {
 
                 // Convertir la fecha de String a LocalDate
                 val fechaFundacion = try {
-                    LocalDate.parse(fechaString, dateFormatter)
+                    LocalDate.parse(fechaString, fechaFormatter)
                 } catch (e: Exception) {
                     println("Error: La fecha ingresada no es válida. Asegúrese de usar el formato yyyy-MM-dd.")
                     continue
@@ -114,7 +114,7 @@ fun main() {
                     val fechaString = scanner.nextLine()
                     // Convertir la fecha de String a LocalDate
                     val fechaFundacion = try {
-                        LocalDate.parse(fechaString, dateFormatter)
+                        LocalDate.parse(fechaString, fechaFormatter)
                     } catch (e: Exception) {
                         println("Error: La fecha ingresada no es válida. Asegúrese de usar el formato yyyy-MM-dd.")
                         continue

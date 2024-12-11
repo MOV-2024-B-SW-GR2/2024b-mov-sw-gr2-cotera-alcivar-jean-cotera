@@ -4,6 +4,6 @@ data class  Proyecto(
     var id: Int,
     var nombre: String,
     var descripcion: String,
-    var presupuesto: Double, // Decimal
-    var empresaId: Int // Relación con Empresa
+    var presupuesto: Double,
+    var empresaId: Int
 )

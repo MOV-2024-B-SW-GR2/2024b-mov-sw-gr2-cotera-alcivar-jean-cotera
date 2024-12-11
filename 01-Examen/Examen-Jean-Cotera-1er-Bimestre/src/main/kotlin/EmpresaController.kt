@@ -13,7 +13,7 @@ class EmpresaController {
 
 
     private fun cargarEmpresas() {
-        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd") // Definir el patrón de fecha
+        val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         if (archivo.exists()) {
             archivo.forEachLine { linea ->
@@ -22,7 +22,6 @@ class EmpresaController {
                     Empresa(
                         id = datos[0].toInt(),
                         nombre = datos[1],
-                        // Convertir la fecha de String a LocalDate usando el DateTimeFormatter
                         fechaFundacion = LocalDate.parse(datos[2], dateFormatter),
                         esActiva = datos[3].toBoolean(),
                         ingresosAnuales = datos[4].toDouble()
