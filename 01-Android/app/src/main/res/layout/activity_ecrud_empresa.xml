@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ECrudEntrenador">
+
+
+    <EditText
+        android:id="@+id/input_nombre_empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Ingrese nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_id_empresa"
+        app:layout_constraintTop_toBottomOf="@+id/input_id_empresa" />
+
+    <Button
+        android:id="@+id/btn_buscar_bdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="56dp"
+        android:text="Buscar"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_ingresos_anuales" />
+
+    <Button
+        android:id="@+id/btn_crear_bdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:text="Crear"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_actualizar_bdd" />
+
+    <Button
+        android:id="@+id/btn_actualizar_bdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:text="actualizar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_buscar_bdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_buscar_bdd" />
+
+    <Button
+        android:id="@+id/btn_eliminar_bdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Eliminar"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/btn_buscar_bdd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_buscar_bdd" />
+
+    <EditText
+        android:id="@+id/input_id_empresa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="88dp"
+        android:ems="10"
+        android:hint="Ingrese id empresa"
+        android:inputType="textPersonName"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btn_crear_bdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/input_fecha_fundacion"
+        android:layout_width="243dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Ingrese fecha de fundacion"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_nombre_empresa"
+        app:layout_constraintTop_toBottomOf="@+id/input_nombre_empresa" />
+
+    <EditText
+        android:id="@+id/input_esta_activa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Ingrese si esta activa"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_fecha_fundacion"
+        app:layout_constraintTop_toBottomOf="@+id/input_fecha_fundacion" />
+
+    <EditText
+        android:id="@+id/input_ingresos_anuales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="Ingresos anuales"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_esta_activa"
+        app:layout_constraintTop_toBottomOf="@+id/input_esta_activa" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
