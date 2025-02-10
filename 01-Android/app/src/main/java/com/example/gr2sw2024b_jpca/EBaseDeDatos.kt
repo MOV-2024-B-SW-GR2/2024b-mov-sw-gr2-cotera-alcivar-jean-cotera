@@ -1,4 +1,4 @@
-package com.example.gr2sw2024b_vaes
+package com.example.gr2sw2024b_jpca
 
 class EBaseDeDatos {
     companion object{

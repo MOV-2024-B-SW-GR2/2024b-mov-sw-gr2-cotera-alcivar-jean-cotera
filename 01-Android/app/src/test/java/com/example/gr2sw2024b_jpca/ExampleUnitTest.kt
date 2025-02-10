@@ -1,4 +1,4 @@
-package com.example.gr2sw2024b_vaes
+package com.example.gr2sw2024b_jpca
 
 import org.junit.Test
 

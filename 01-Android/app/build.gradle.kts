@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.gr2sw2024b_vaes"
+    namespace = "com.example.gr2sw2024b_jpca"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.gr2sw2024b_vaes"
+        applicationId = "com.example.gr2sw2024b_jpca"
         minSdk = 27
         targetSdk = 34
         versionCode = 1

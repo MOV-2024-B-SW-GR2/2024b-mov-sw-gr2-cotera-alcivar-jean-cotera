@@ -1,5 +1,5 @@
 // ESqliteHelperEmpresa.kt
-package com.example.gr2sw2024b_vaes
+package com.example.gr2sw2024b_jpca
 
 import android.content.ContentValues
 import android.content.Context
