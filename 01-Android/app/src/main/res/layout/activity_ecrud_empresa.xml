@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="156dp"
         android:text="Buscar"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,5 +109,27 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/input_esta_activa"
         app:layout_constraintTop_toBottomOf="@+id/input_esta_activa" />
+
+    <EditText
+        android:id="@+id/input_longitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="Longitud"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_ingresos_anuales"
+        app:layout_constraintTop_toBottomOf="@+id/input_ingresos_anuales" />
+
+    <EditText
+        android:id="@+id/input_latitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Latitud"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/input_longitud"
+        app:layout_constraintTop_toBottomOf="@+id/input_longitud" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,4 +11,7 @@
     <item
         android:id="@+id/mi_proyecto"
         android:title="Proyectos" />
+    <item
+        android:id="@+id/mi_ubicacion"
+        android:title="Ubicacion" />
 </menu>

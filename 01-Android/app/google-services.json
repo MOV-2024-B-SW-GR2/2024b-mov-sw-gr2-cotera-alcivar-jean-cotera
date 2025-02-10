@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "988253768044",
+    "project_number": "900178680683",
     "project_id": "mov-2024b-sw-gr2-jpca",
-    "storage_bucket": "mov-2024b-sw-gr2-jpca.appspot.com"
+    "storage_bucket": "mov-2024b-sw-gr2-jpca.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:988253768044:android:debac698f296d3c03f0b49",
+        "mobilesdk_app_id": "1:900178680683:android:68e3a260965f2f4d668a2e",
         "android_client_info": {
           "package_name": "com.example.gr2sw2024b_jpca"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyD3sKCY51h69QQUULEpvV4peArbX-dLcdM"
+          "current_key": "AIzaSyDTTFpWmBr5DJjlFHIRWtZfBYAySemRxu0"
         }
       ],
       "services": {

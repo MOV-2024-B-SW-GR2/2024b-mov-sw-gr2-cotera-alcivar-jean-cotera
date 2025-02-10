@@ -12,16 +12,17 @@ class ESqliteHelperEmpresa(contexto: Context?) :
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("""
-            CREATE TABLE EMPRESA(
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nombre VARCHAR(50),
-                fechaFundacion VARCHAR(50),
-                esActiva INTEGER,
-                ingresosAnuales REAL
-            )
-        """.trimIndent())
+        CREATE TABLE EMPRESA(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre VARCHAR(50),
+            fechaFundacion VARCHAR(50),
+            esActiva INTEGER,
+            ingresosAnuales REAL,
+            latitud REAL,     
+            longitud REAL   
+        )
+    """.trimIndent())
     }
-
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
     fun crearEmpresa(empresa: Empresa): Boolean {
@@ -31,12 +32,13 @@ class ESqliteHelperEmpresa(contexto: Context?) :
             put("fechaFundacion", empresa.fechaFundacion)
             put("esActiva", empresa.esActiva)
             put("ingresosAnuales", empresa.ingresosAnuales)
+            put("latitud", empresa.latitud)      // Nuevo campo
+            put("longitud", empresa.longitud)    // Nuevo campo
         }
         val resultado = db.insert("EMPRESA", null, valores)
         db.close()
         return resultado != -1L
     }
-
     fun eliminarEmpresa(id: Int): Boolean {
         val db = writableDatabase
         val resultado = db.delete("EMPRESA", "id = ?", arrayOf(id.toString()))
@@ -51,6 +53,8 @@ class ESqliteHelperEmpresa(contexto: Context?) :
             put("fechaFundacion", empresa.fechaFundacion)
             put("esActiva", empresa.esActiva)
             put("ingresosAnuales", empresa.ingresosAnuales)
+            put("latitud", empresa.latitud)      // Nuevo campo
+            put("longitud", empresa.longitud)    // Nuevo campo
         }
         val resultado = db.update("EMPRESA", valores, "id = ?", arrayOf(empresa.id.toString()))
         db.close()
@@ -66,7 +70,9 @@ class ESqliteHelperEmpresa(contexto: Context?) :
                 cursor.getString(1),
                 cursor.getString(2),
                 cursor.getInt(3) == 1,
-                cursor.getDouble(4)
+                cursor.getDouble(4),
+                cursor.getDouble(5),  // latitud
+                cursor.getDouble(6)   // longitud
             )
         } else {
             null
@@ -84,7 +90,9 @@ class ESqliteHelperEmpresa(contexto: Context?) :
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getInt(3) == 1,
-                    cursor.getDouble(4)
+                    cursor.getDouble(4),
+                    cursor.getDouble(5),  // latitud
+                    cursor.getDouble(6)   // longitud
                 )
             )
         }
@@ -101,7 +109,9 @@ class ESqliteHelperEmpresa(contexto: Context?) :
             cursor.getString(1),
             cursor.getString(2),
             cursor.getInt(3) == 1,
-            cursor.getDouble(4)
+            cursor.getDouble(4),
+            cursor.getDouble(5),  // latitud
+            cursor.getDouble(6)   // longitud
         )
         cursor.close()
         return empresa

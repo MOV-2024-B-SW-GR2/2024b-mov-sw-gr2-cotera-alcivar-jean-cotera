@@ -18,6 +18,8 @@ class ECrudEmpresa : AppCompatActivity() {
     private lateinit var empresaFechaFundacionEditText: EditText
     private lateinit var empresaEstaActivaEditText: EditText
     private lateinit var empresaIngresosAnualesEditText: EditText
+    private lateinit var empresaLatitudEditText: EditText
+    private lateinit var empresaLongitudEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +45,8 @@ class ECrudEmpresa : AppCompatActivity() {
         empresaFechaFundacionEditText = findViewById(R.id.input_fecha_fundacion)
         empresaEstaActivaEditText = findViewById(R.id.input_esta_activa)
         empresaIngresosAnualesEditText = findViewById(R.id.input_ingresos_anuales)
+        empresaLatitudEditText = findViewById(R.id.input_latitud)
+        empresaLongitudEditText = findViewById(R.id.input_longitud)
     }
 
     private fun setupListeners() {
@@ -56,6 +60,8 @@ class ECrudEmpresa : AppCompatActivity() {
         empresaFechaFundacionEditText.setText(empresa?.fechaFundacion)
         empresaEstaActivaEditText.setText(if (empresa?.esActiva == true) "Si" else "No")
         empresaIngresosAnualesEditText.setText(empresa?.ingresosAnuales.toString())
+        empresaLatitudEditText.setText(empresa?.latitud.toString())
+        empresaLongitudEditText.setText(empresa?.longitud.toString())
         empresaActualizarButton.visibility = View.VISIBLE
     }
 
@@ -68,15 +74,11 @@ class ECrudEmpresa : AppCompatActivity() {
         val fechaFundacion = empresaFechaFundacionEditText.text.toString()
         val estaActiva = empresaEstaActivaEditText.text.toString().toLowerCase() == "si"
         val ingresosAnuales = empresaIngresosAnualesEditText.text.toString().toDouble()
+        val latitud = empresaLatitudEditText.text.toString().toDouble()
+        val longitud = empresaLongitudEditText.text.toString().toDouble()
 
-
-        val respuesta = ESqliteHelperEmpresa(this).crearEmpresa( Empresa(
-            0,
-                nombre,
-                fechaFundacion,
-                estaActiva,
-                ingresosAnuales
-            )
+        val respuesta = ESqliteHelperEmpresa(this).crearEmpresa(
+            Empresa(0, nombre, fechaFundacion, estaActiva, ingresosAnuales, latitud, longitud)
         )
 
         if (respuesta) {
@@ -96,14 +98,11 @@ class ECrudEmpresa : AppCompatActivity() {
         val fechaFundacion = empresaFechaFundacionEditText.text.toString()
         val estaActiva = empresaEstaActivaEditText.text.toString().toLowerCase() == "si"
         val ingresosAnuales = empresaIngresosAnualesEditText.text.toString().toDouble()
+        val latitud = empresaLatitudEditText.text.toString().toDouble()
+        val longitud = empresaLongitudEditText.text.toString().toDouble()
 
-        val respuesta = ESqliteHelperEmpresa(this).actualizarEmpresa( Empresa (
-            id,
-            nombre,
-            fechaFundacion,
-            estaActiva,
-            ingresosAnuales
-        )
+        val respuesta = ESqliteHelperEmpresa(this).actualizarEmpresa(
+            Empresa(id, nombre, fechaFundacion, estaActiva, ingresosAnuales, latitud, longitud)
         )
 
         if (respuesta) {

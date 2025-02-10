@@ -90,6 +90,15 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 true
             }
+            R.id.mi_ubicacion -> {  // Nueva opción para el mapa
+                val intent = Intent(this, MapsActivity::class.java).apply {
+                    putExtra("latitud", empresaSeleccionada.latitud)
+                    putExtra("longitud", empresaSeleccionada.longitud)
+                    putExtra("nombre", empresaSeleccionada.nombre)
+                }
+                startActivity(intent)
+                true
+            }
             else -> super.onContextItemSelected(item)
         }
     }
