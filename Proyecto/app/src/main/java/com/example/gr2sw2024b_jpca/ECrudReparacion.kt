@@ -38,11 +38,11 @@ class ECrudReparacion : AppCompatActivity() {
     private fun setupViews() {
         reparacionCrearButton = findViewById(R.id.btn_crear_bdd)
         reparacionActualizarButton = findViewById(R.id.btn_actualizar_bdd)
-        reparacionIdEditText = findViewById(R.id.input_id_proyecto)
-        reparacionTituloEditText = findViewById(R.id.input_nombre_proyecto)
-        reparacionDescripcionEditText = findViewById(R.id.input_descripcion_proyecto)
-        reparacionCostoEditText = findViewById(R.id.input_presupuesto_proyecto)
-        reparacionVehiculoIdEditText = findViewById(R.id.input_id_empresa_proyecto)
+        reparacionIdEditText = findViewById(R.id.input_id)
+        reparacionTituloEditText = findViewById(R.id.input_titulo_reparacion)
+        reparacionDescripcionEditText = findViewById(R.id.input_descripcion)
+        reparacionCostoEditText = findViewById(R.id.input_costo_reparacion)
+        reparacionVehiculoIdEditText = findViewById(R.id.input_id_vehiculo)
     }
 
     private fun setupListeners() {

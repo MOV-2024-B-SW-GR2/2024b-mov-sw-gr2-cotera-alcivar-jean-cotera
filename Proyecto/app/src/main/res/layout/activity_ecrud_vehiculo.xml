@@ -9,15 +9,15 @@
 
 
     <EditText
-        android:id="@+id/input_nombre_empresa"
+        android:id="@+id/input_placa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="Placa"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/input_id_empresa"
-        app:layout_constraintTop_toBottomOf="@+id/input_id_empresa" />
+        app:layout_constraintStart_toStartOf="@+id/input_vehiculo_id"
+        app:layout_constraintTop_toBottomOf="@+id/input_vehiculo_id" />
 
     <Button
         android:id="@+id/btn_buscar_bdd"
@@ -29,7 +29,7 @@
         android:text="Buscar"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_ingresos_anuales" />
+        app:layout_constraintTop_toBottomOf="@+id/input_precio_vehiculo" />
 
     <Button
         android:id="@+id/btn_crear_bdd"
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_buscar_bdd" />
 
     <EditText
-        android:id="@+id/input_id_empresa"
+        android:id="@+id/input_vehiculo_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
@@ -82,37 +82,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/input_fecha_fundacion"
+        android:id="@+id/input_fecha_compra"
         android:layout_width="210dp"
         android:layout_height="45dp"
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="Fecha de compra"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/input_nombre_empresa"
-        app:layout_constraintTop_toBottomOf="@+id/input_nombre_empresa" />
+        app:layout_constraintStart_toStartOf="@+id/input_placa"
+        app:layout_constraintTop_toBottomOf="@+id/input_placa" />
 
     <EditText
-        android:id="@+id/input_esta_activa"
+        android:id="@+id/input_usa_diesel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:ems="10"
         android:hint="Usa diesel"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/input_fecha_fundacion"
-        app:layout_constraintTop_toBottomOf="@+id/input_fecha_fundacion" />
+        app:layout_constraintStart_toStartOf="@+id/input_fecha_compra"
+        app:layout_constraintTop_toBottomOf="@+id/input_fecha_compra" />
 
     <EditText
-        android:id="@+id/input_ingresos_anuales"
+        android:id="@+id/input_precio_vehiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
         android:ems="10"
         android:hint="Precio del vehiculo"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/input_esta_activa"
-        app:layout_constraintTop_toBottomOf="@+id/input_esta_activa" />
+        app:layout_constraintStart_toStartOf="@+id/input_usa_diesel"
+        app:layout_constraintTop_toBottomOf="@+id/input_usa_diesel" />
 
     <EditText
         android:id="@+id/input_longitud"
@@ -123,8 +123,8 @@
         android:hint="Longitud"
         android:inputType="textPersonName"
         android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/input_ingresos_anuales"
-        app:layout_constraintTop_toBottomOf="@+id/input_ingresos_anuales" />
+        app:layout_constraintStart_toStartOf="@+id/input_precio_vehiculo"
+        app:layout_constraintTop_toBottomOf="@+id/input_precio_vehiculo" />
 
     <EditText
         android:id="@+id/input_latitud"

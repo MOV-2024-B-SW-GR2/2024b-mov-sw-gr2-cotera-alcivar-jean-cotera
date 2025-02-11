@@ -43,8 +43,8 @@ class MainReparacion : AppCompatActivity() {
     private fun cargarReparaciones() {
         val vehiculo = intent.getParcelableExtra<Vehiculo>("vehiculo")
         val vehiculoId = vehiculo!!.id
-        reparacions = EBaseDeDatos.tablaProyecto!!.obtenerTodasLasReparacionesPorIdVehiculo(vehiculoId).toCollection(ArrayList())
-        reparacionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, reparacions)
+        reparaciones = EBaseDeDatos.tablaReparacion!!.obtenerTodasLasReparacionesPorIdVehiculo(vehiculoId).toCollection(ArrayList())
+        reparacionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, reparaciones)
         val listView = findViewById<ListView>(R.id.lv_list_view)
         listView.adapter = reparacionAdapter
     }
@@ -70,14 +70,14 @@ class MainReparacion : AppCompatActivity() {
         inflater.inflate(R.menu.menu_proy, menu)
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         posicionSeleccionada = info.position
-        reparacionSeleccionado = reparacions[posicionSeleccionada]
+        reparacionSeleccionado = reparaciones[posicionSeleccionada]
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mi_eliminar -> {
                 EBaseDeDatos.tablaReparacion!!.eliminarReparacion(reparacionSeleccionado.id)
-                reparacions.removeAt(posicionSeleccionada)
+                reparaciones.removeAt(posicionSeleccionada)
                 reparacionAdapter.notifyDataSetChanged()
                 true
             }
@@ -98,14 +98,9 @@ class MainReparacion : AppCompatActivity() {
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val reparacion = result.data?.getParcelableExtra<Reparacion>("reparacion")
-            val vehiculo = intent.getParcelableExtra<Vehiculo>("vehiculo")
-            val vehiculoId = vehiculo!!.id
             if (reparacion != null) {
-                reparacions.removeIf { it.id == reparacion.id }
-
-                if (reparacion.empresaId == vehiculoId) {
-                    reparacions.add(reparacion)
-                }
+                reparaciones.removeIf { it.id == reparacion.id }
+                reparaciones.add(reparacion)
                 reparacionAdapter.notifyDataSetChanged()
             }
         }

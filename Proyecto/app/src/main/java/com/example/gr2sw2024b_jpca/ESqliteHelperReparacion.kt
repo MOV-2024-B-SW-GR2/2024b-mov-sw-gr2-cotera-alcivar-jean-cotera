@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import org.example.Reparacion
 
 class ESqliteHelperReparacion(contexto: Context?) :
-    SQLiteOpenHelper(contexto, "moviles", null, 1) {
+    SQLiteOpenHelper(contexto, "prueba", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("""

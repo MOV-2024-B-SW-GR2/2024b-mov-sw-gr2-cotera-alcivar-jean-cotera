@@ -38,11 +38,11 @@ class ECrudVehiculo : AppCompatActivity() {
     private fun setupViews() {
         vehiculoCrearButton = findViewById(R.id.btn_crear_bdd)
         vehiculoActualizarButton = findViewById(R.id.btn_actualizar_bdd)
-        vehiculoIdEditText = findViewById(R.id.input_id_empresa)
-        vehiculoPlacaEditText = findViewById(R.id.input_nombre_empresa)
-        vehiculoFechaCompraEditText = findViewById(R.id.input_fecha_fundacion)
-        vehiculoUsaDieselEditText = findViewById(R.id.input_esta_activa)
-        vehiculoPrecioEditText = findViewById(R.id.input_ingresos_anuales)
+        vehiculoIdEditText = findViewById(R.id.input_vehiculo_id)
+        vehiculoPlacaEditText = findViewById(R.id.input_placa)
+        vehiculoFechaCompraEditText = findViewById(R.id.input_fecha_compra)
+        vehiculoUsaDieselEditText = findViewById(R.id.input_usa_diesel)
+        vehiculoPrecioEditText = findViewById(R.id.input_precio_vehiculo)
     }
 
     private fun setupListeners() {
@@ -56,8 +56,6 @@ class ECrudVehiculo : AppCompatActivity() {
         vehiculoFechaCompraEditText.setText(vehiculo?.fechaCompra)
         vehiculoUsaDieselEditText.setText(if (vehiculo?.usaDiesel == true) "Si" else "No")
         vehiculoPrecioEditText.setText(vehiculo?.precio.toString())
-        empresaLatitudEditText.setText("0")
-        empresaLongitudEditText.setText("0")
         vehiculoActualizarButton.visibility = View.VISIBLE
     }
 

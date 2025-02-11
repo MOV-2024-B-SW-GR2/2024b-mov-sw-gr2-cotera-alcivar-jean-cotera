@@ -28,7 +28,7 @@ class ESqliteHelperVehiculo(contexto: Context?) :
         val valores = ContentValues().apply {
             put("placa", vehiculo.placa)
             put("fechaCompra", vehiculo.fechaCompra)
-            put("usaDiesel", vehiculo.esActiva)
+            put("usaDiesel", vehiculo.usaDiesel)
             put("precio", vehiculo.precio)
         }
         val resultado = db.insert("Vehiculo", null, valores)
@@ -47,7 +47,7 @@ class ESqliteHelperVehiculo(contexto: Context?) :
         val valores = ContentValues().apply {
             put("placa", vehiculo.placa)
             put("fechaCompra", vehiculo.fechaCompra)
-            put("usaDiesel", vehiculo.esActiva)
+            put("usaDiesel", vehiculo.usaDiesel)
             put("precio", vehiculo.precio)
         }
         val resultado = db.update("Vehiculo", valores, "id = ?", arrayOf(vehiculo.id.toString()))

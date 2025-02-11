@@ -64,46 +64,46 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_actualizar_bdd"
         app:layout_constraintHorizontal_bias="0.222"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_id_empresa_proyecto" />
+        app:layout_constraintTop_toBottomOf="@+id/input_id_vehiculo" />
 
     <EditText
-        android:id="@+id/input_presupuesto_proyecto"
+        android:id="@+id/input_costo_reparacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Costo de reparacion"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/input_id_empresa_proyecto"
-        app:layout_constraintStart_toStartOf="@+id/input_descripcion_proyecto"
-        app:layout_constraintTop_toBottomOf="@+id/input_descripcion_proyecto" />
+        app:layout_constraintBottom_toTopOf="@+id/input_id_vehiculo"
+        app:layout_constraintStart_toStartOf="@+id/input_descripcion"
+        app:layout_constraintTop_toBottomOf="@+id/input_descripcion" />
 
     <EditText
-        android:id="@+id/input_descripcion_proyecto"
+        android:id="@+id/input_descripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="35dp"
         android:ems="10"
         android:hint="Ingrese descripcion"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/input_presupuesto_proyecto"
-        app:layout_constraintStart_toStartOf="@+id/input_nombre_proyecto"
-        app:layout_constraintTop_toBottomOf="@+id/input_nombre_proyecto" />
+        app:layout_constraintBottom_toTopOf="@+id/input_costo_reparacion"
+        app:layout_constraintStart_toStartOf="@+id/input_titulo_reparacion"
+        app:layout_constraintTop_toBottomOf="@+id/input_titulo_reparacion" />
 
     <EditText
-        android:id="@+id/input_nombre_proyecto"
+        android:id="@+id/input_titulo_reparacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="23dp"
         android:ems="10"
         android:hint="Titulo de reparacion"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/input_descripcion_proyecto"
-        app:layout_constraintStart_toStartOf="@+id/input_id_proyecto"
-        app:layout_constraintTop_toBottomOf="@+id/input_id_proyecto" />
+        app:layout_constraintBottom_toTopOf="@+id/input_descripcion"
+        app:layout_constraintStart_toStartOf="@+id/input_id"
+        app:layout_constraintTop_toBottomOf="@+id/input_id" />
 
     <EditText
-        android:id="@+id/input_id_proyecto"
+        android:id="@+id/input_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
@@ -112,13 +112,13 @@
         android:hint="Ingrese id"
         android:visibility="invisible"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/input_nombre_proyecto"
+        app:layout_constraintBottom_toTopOf="@+id/input_titulo_reparacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/input_id_empresa_proyecto"
+        android:id="@+id/input_id_vehiculo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="48dp"
@@ -127,7 +127,7 @@
         android:inputType="textPersonName"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btn_buscar_bdd"
-        app:layout_constraintStart_toStartOf="@+id/input_presupuesto_proyecto"
-        app:layout_constraintTop_toBottomOf="@+id/input_presupuesto_proyecto" />
+        app:layout_constraintStart_toStartOf="@+id/input_costo_reparacion"
+        app:layout_constraintTop_toBottomOf="@+id/input_costo_reparacion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

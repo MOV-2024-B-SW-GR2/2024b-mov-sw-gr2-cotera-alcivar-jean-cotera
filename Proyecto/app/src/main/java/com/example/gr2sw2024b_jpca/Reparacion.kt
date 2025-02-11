@@ -20,7 +20,7 @@ class Reparacion(
     )
 
     override fun toString(): String {
-        return "🔩 $nombre 🤑 $presupuesto"
+        return "🔩 $titulo 🤑 $costo"
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

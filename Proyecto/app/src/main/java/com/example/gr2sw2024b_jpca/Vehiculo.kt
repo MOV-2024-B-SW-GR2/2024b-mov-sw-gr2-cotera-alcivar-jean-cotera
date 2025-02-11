@@ -21,7 +21,7 @@ class Vehiculo(
     )
 
     override fun toString(): String {
-        return "🚘 $nombre 📅 $fechaFundacion 🤑 $ingresosAnuales"
+        return "🚘 $placa 📅 $fechaCompra 🤑 $precio"
     }
 
     // Escribe los nuevos campos en el Parcel
