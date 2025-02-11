@@ -11,13 +11,13 @@ import org.example.Reparacion
 
 class ECrudReparacion : AppCompatActivity() {
 
-    private lateinit var proyectoCrearButton: Button
-    private lateinit var proyectoActualizarButton: Button
-    private lateinit var proyectoIdEditText: EditText
-    private lateinit var proyectoNombreEditText: EditText
-    private lateinit var proyectoDescripcionEditText: EditText
-    private lateinit var proyectoPresupuestoEditText: EditText
-    private lateinit var proyectoEmpresaIdEditText: EditText
+    private lateinit var reparacionCrearButton: Button
+    private lateinit var reparacionActualizarButton: Button
+    private lateinit var reparacionIdEditText: EditText
+    private lateinit var reparacionTituloEditText: EditText
+    private lateinit var reparacionDescripcionEditText: EditText
+    private lateinit var reparacionCostoEditText: EditText
+    private lateinit var reparacionVehiculoIdEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,57 +26,57 @@ class ECrudReparacion : AppCompatActivity() {
         setupViews()
         setupListeners()
 
-        val reparacion = intent.getParcelableExtra<Reparacion>("proyecto")
+        val reparacion = intent.getParcelableExtra<Reparacion>("reparacion")
         val opcion = intent.getStringExtra("opcion")
 
         when (opcion) {
-            "editar" -> mostrarProyectoParaEditar(reparacion)
-            "crear" -> mostrarFormularioParaCrearProyecto()
+            "editar" -> mostrarReparacionParaEditar(reparacion)
+            "crear" -> mostrarFormularioParaCrearReparacion()
         }
     }
 
     private fun setupViews() {
-        proyectoCrearButton = findViewById(R.id.btn_crear_bdd)
-        proyectoActualizarButton = findViewById(R.id.btn_actualizar_bdd)
-        proyectoIdEditText = findViewById(R.id.input_id_proyecto)
-        proyectoNombreEditText = findViewById(R.id.input_nombre_proyecto)
-        proyectoDescripcionEditText = findViewById(R.id.input_descripcion_proyecto)
-        proyectoPresupuestoEditText = findViewById(R.id.input_presupuesto_proyecto)
-        proyectoEmpresaIdEditText = findViewById(R.id.input_id_empresa_proyecto)
+        reparacionCrearButton = findViewById(R.id.btn_crear_bdd)
+        reparacionActualizarButton = findViewById(R.id.btn_actualizar_bdd)
+        reparacionIdEditText = findViewById(R.id.input_id_proyecto)
+        reparacionTituloEditText = findViewById(R.id.input_nombre_proyecto)
+        reparacionDescripcionEditText = findViewById(R.id.input_descripcion_proyecto)
+        reparacionCostoEditText = findViewById(R.id.input_presupuesto_proyecto)
+        reparacionVehiculoIdEditText = findViewById(R.id.input_id_empresa_proyecto)
     }
 
     private fun setupListeners() {
-        proyectoCrearButton.setOnClickListener { crearProyecto() }
-        proyectoActualizarButton.setOnClickListener { actualizarProyecto() }
+        reparacionCrearButton.setOnClickListener { crearReparacion() }
+        reparacionActualizarButton.setOnClickListener { actualizarReparacion() }
     }
 
-    private fun mostrarProyectoParaEditar(reparacion: Reparacion?) {
-        proyectoIdEditText.setText(reparacion?.id.toString())
-        proyectoNombreEditText.setText(reparacion?.nombre)
-        proyectoDescripcionEditText.setText(reparacion?.descripcion)
-        proyectoPresupuestoEditText.setText(reparacion?.presupuesto.toString())
-        proyectoEmpresaIdEditText.setText(reparacion?.empresaId.toString())
-        proyectoActualizarButton.visibility = View.VISIBLE
-        proyectoEmpresaIdEditText.visibility = View.VISIBLE
+    private fun mostrarReparacionParaEditar(reparacion: Reparacion?) {
+        reparacionIdEditText.setText(reparacion?.id.toString())
+        reparacionTituloEditText.setText(reparacion?.titulo)
+        reparacionDescripcionEditText.setText(reparacion?.descripcion)
+        reparacionCostoEditText.setText(reparacion?.costo.toString())
+        reparacionVehiculoIdEditText.setText(reparacion?.vehiculoId.toString())
+        reparacionActualizarButton.visibility = View.VISIBLE
+        reparacionIdEditText.visibility = View.VISIBLE
     }
 
-    private fun mostrarFormularioParaCrearProyecto() {
-        proyectoCrearButton.visibility = View.VISIBLE
-        proyectoEmpresaIdEditText.setText(intent.getStringExtra("empresaId")?.toString())
+    private fun mostrarFormularioParaCrearReparacion() {
+        reparacionCrearButton.visibility = View.VISIBLE
+        reparacionVehiculoIdEditText.setText(intent.getStringExtra("vehiculoId")?.toString())
     }
 
-    private fun crearProyecto() {
-        val nombre = proyectoNombreEditText.text.toString()
-        val descripcion = proyectoDescripcionEditText.text.toString()
-        val presupuesto = proyectoPresupuestoEditText.text.toString().toDouble()
-        val empresaId = proyectoEmpresaIdEditText.text.toString().toInt()
+    private fun crearReparacion() {
+        val titulo = reparacionTituloEditText.text.toString()
+        val descripcion = reparacionDescripcionEditText.text.toString()
+        val costo = reparacionCostoEditText.text.toString().toDouble()
+        val vehiculoId = reparacionVehiculoIdEditText.text.toString().toInt()
 
-        val respuesta = ESqliteHelperReparacion(this).crearProyecto(Reparacion( 0,nombre, descripcion, presupuesto, empresaId))
+        val respuesta = ESqliteHelperReparacion(this).crearReparacion(Reparacion( 0,titulo, descripcion, costo, vehiculoId))
 
         if (respuesta) {
-            val ultimaProyectoCreada = ESqliteHelperReparacion(this).obtenerUltimoProyectoCreado(empresaId)
+            val ultimaReparacionCreada = ESqliteHelperReparacion(this).obtenerUltimaReparacionCreada(vehiculoId)
             val intentDevolverRespuesta = Intent()
-            intentDevolverRespuesta.putExtra("proyecto", ultimaProyectoCreada)
+            intentDevolverRespuesta.putExtra("reparacion", ultimaReparacionCreada)
             setResult(RESULT_OK, intentDevolverRespuesta)
             finish()
         } else {
@@ -84,19 +84,19 @@ class ECrudReparacion : AppCompatActivity() {
         }
     }
 
-    private fun actualizarProyecto() {
-        val id = proyectoIdEditText.text.toString().toInt()
-        val nombre = proyectoNombreEditText.text.toString()
-        val descripcion = proyectoDescripcionEditText.text.toString()
-        val presupuesto = proyectoPresupuestoEditText.text.toString().toDouble()
-        val empresaId = proyectoEmpresaIdEditText.text.toString().toInt()
+    private fun actualizarReparacion() {
+        val id = reparacionIdEditText.text.toString().toInt()
+        val titulo = reparacionTituloEditText.text.toString()
+        val descripcion = reparacionDescripcionEditText.text.toString()
+        val costo = reparacionCostoEditText.text.toString().toDouble()
+        val vehiculoId = reparacionVehiculoIdEditText.text.toString().toInt()
 
-        val respuesta = ESqliteHelperReparacion(this).actualizarProyecto(Reparacion( id, nombre, descripcion, presupuesto, empresaId))
+        val respuesta = ESqliteHelperReparacion(this).actualizarReparacion(Reparacion( id, titulo, descripcion, costo, vehiculoId))
 
         if (respuesta) {
-            val proyectoActualizado = ESqliteHelperReparacion(this).consultarProyectoPorId(id)
+            val reparacionActualizada = ESqliteHelperReparacion(this).consultarReparacionPorId(id)
             val intentDevolverRespuesta = Intent()
-            intentDevolverRespuesta.putExtra("proyecto", proyectoActualizado)
+            intentDevolverRespuesta.putExtra("reparacion", reparacionActualizada)
             setResult(RESULT_OK, intentDevolverRespuesta)
             finish()
         } else {

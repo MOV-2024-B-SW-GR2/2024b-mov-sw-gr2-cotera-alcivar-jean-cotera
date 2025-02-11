@@ -12,55 +12,55 @@ class ESqliteHelperReparacion(contexto: Context?) :
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL("""
-            CREATE TABLE Proyecto(
+            CREATE TABLE Reparacion(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                nombre VARCHAR(50),
+                titulo VARCHAR(50),
                 descripcion VARCHAR(50),
-                presupuesto REAL,
-                empresaId INTEGER,
-                FOREIGN KEY (empresaId) REFERENCES Empresa(id)
+                costo REAL,
+                vehiculoId INTEGER,
+                FOREIGN KEY (vehiculoId) REFERENCES Vehiculo(id)
             )
         """.trimIndent())
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
-    fun crearProyecto(reparacion: Reparacion): Boolean {
+    fun crearReparacion(reparacion: Reparacion): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {
-            put("nombre", reparacion.nombre)
+            put("titulo", reparacion.titulo)
             put("descripcion", reparacion.descripcion)
-            put("presupuesto", reparacion.presupuesto)
-            put("empresaId", reparacion.empresaId)
+            put("costo", reparacion.costo)
+            put("vehiculoId", reparacion.vehiculoId)
         }
-        val resultado = db.insert("Proyecto", null, valores)
+        val resultado = db.insert("Reparacion", null, valores)
         db.close()
         return resultado != -1L
     }
 
-    fun eliminarProyecto(id: Int): Boolean {
+    fun eliminarReparacion(id: Int): Boolean {
         val db = writableDatabase
-        val resultado = db.delete("Proyecto", "id = ?", arrayOf(id.toString()))
+        val resultado = db.delete("Reparacion", "id = ?", arrayOf(id.toString()))
         db.close()
         return resultado != 0
     }
 
-    fun actualizarProyecto(reparacion: Reparacion): Boolean {
+    fun actualizarReparacion(reparacion: Reparacion): Boolean {
         val db = writableDatabase
         val valores = ContentValues().apply {
-            put("nombre", reparacion.nombre)
+            put("titulo", reparacion.titulo)
             put("descripcion", reparacion.descripcion)
-            put("presupuesto", reparacion.presupuesto)
-            put("empresaId", reparacion.empresaId)
+            put("costo", reparacion.costo)
+            put("vehiculoId", reparacion.vehiculoId)
         }
-        val resultado = db.update("Proyecto", valores, "id = ?", arrayOf(reparacion.id.toString()))
+        val resultado = db.update("Reparacion", valores, "id = ?", arrayOf(reparacion.id.toString()))
         db.close()
         return resultado != 0
     }
 
-    fun consultarProyectoPorId(id: Int): Reparacion? {
+    fun consultarReparacionPorId(id: Int): Reparacion? {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM Proyecto WHERE id = ?", arrayOf(id.toString()))
+        val cursor = db.rawQuery("SELECT * FROM Reparacion WHERE id = ?", arrayOf(id.toString()))
         return if (cursor.moveToFirst()) {
             Reparacion(
                 cursor.getInt(0),
@@ -74,9 +74,9 @@ class ESqliteHelperReparacion(contexto: Context?) :
         }.also { cursor.close() }
     }
 
-    fun obtenerTodosLosProyectosPorIdEmpresa(idEmpresa: Int): ArrayList<Reparacion> {
+    fun obtenerTodasLasReparacionesPorIdVehiculo(idVehiculo: Int): ArrayList<Reparacion> {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM Proyecto WHERE empresaId = ?", arrayOf(idEmpresa.toString()))
+        val cursor = db.rawQuery("SELECT * FROM Reparacion WHERE vehiculoId = ?", arrayOf(idVehiculo.toString()))
         val reparacions = ArrayList<Reparacion>()
         while (cursor.moveToNext()) {
             reparacions.add(
@@ -93,9 +93,9 @@ class ESqliteHelperReparacion(contexto: Context?) :
         return reparacions
     }
 
-    fun obtenerUltimoProyectoCreado(idEmpresa: Int): Reparacion {
+    fun obtenerUltimaReparacionCreada(idVehiculo: Int): Reparacion {
         val db = readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM Proyecto WHERE empresaId = ? ORDER BY id DESC LIMIT 1", arrayOf(idEmpresa.toString()))
+        val cursor = db.rawQuery("SELECT * FROM Reparacion WHERE vehiculoId = ? ORDER BY id DESC LIMIT 1", arrayOf(idVehiculo.toString()))
         cursor.moveToFirst()
         val reparacion = Reparacion(
             cursor.getInt(0),

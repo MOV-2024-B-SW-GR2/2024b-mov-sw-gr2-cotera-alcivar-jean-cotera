@@ -5,12 +5,10 @@ import android.os.Parcelable
 
 class Vehiculo(
     var id: Int,
-    var nombre: String,
-    var fechaFundacion: String,
-    var esActiva: Boolean,
-    var ingresosAnuales: Double,
-    var latitud: Double,       // Nuevo campo
-    var longitud: Double      // Nuevo campo
+    var placa: String,
+    var fechaCompra: String,
+    var usaDiesel: Boolean,
+    var precio: Double
 ) : Parcelable {
 
     // Constructor modificado para leer todos los campos del Parcel
@@ -19,9 +17,7 @@ class Vehiculo(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readByte() != 0.toByte(),
-        parcel.readDouble(),
-        parcel.readDouble(), // Lee latitud
-        parcel.readDouble()   // Lee longitud
+        parcel.readDouble()
     )
 
     override fun toString(): String {
@@ -31,12 +27,10 @@ class Vehiculo(
     // Escribe los nuevos campos en el Parcel
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(nombre)
-        parcel.writeString(fechaFundacion)
-        parcel.writeByte(if (esActiva) 1 else 0)
-        parcel.writeDouble(ingresosAnuales)
-        parcel.writeDouble(latitud)   // Escribe latitud
-        parcel.writeDouble(longitud)  // Escribe longitud
+        parcel.writeString(placa)
+        parcel.writeString(fechaCompra)
+        parcel.writeByte(if (usaDiesel) 1 else 0)
+        parcel.writeDouble(precio)
     }
 
     override fun describeContents(): Int {

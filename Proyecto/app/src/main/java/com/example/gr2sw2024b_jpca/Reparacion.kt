@@ -5,10 +5,10 @@ import android.os.Parcelable
 
 class Reparacion(
     var id: Int,
-    var nombre: String,
+    var titulo: String,
     var descripcion: String,
-    var presupuesto: Double,
-    var empresaId: Int
+    var costo: Double,
+    var vehiculoId: Int
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -25,10 +25,10 @@ class Reparacion(
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(id)
-        parcel.writeString(nombre)
+        parcel.writeString(titulo)
         parcel.writeString(descripcion)
-        parcel.writeDouble(presupuesto)
-        parcel.writeInt(empresaId)
+        parcel.writeDouble(costo)
+        parcel.writeInt(vehiculoId)
     }
 
     override fun describeContents(): Int {

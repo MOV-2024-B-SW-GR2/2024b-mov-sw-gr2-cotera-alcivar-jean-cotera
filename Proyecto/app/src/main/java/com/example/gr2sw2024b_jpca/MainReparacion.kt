@@ -18,7 +18,7 @@ import org.example.Reparacion
 class MainReparacion : AppCompatActivity() {
 
     private lateinit var reparacionAdapter: ArrayAdapter<Reparacion>
-    private var reparacions = ArrayList<Reparacion>()
+    private var reparaciones = ArrayList<Reparacion>()
     private lateinit var reparacionSeleccionado: Reparacion
     private var posicionSeleccionada = -1
 
@@ -27,7 +27,7 @@ class MainReparacion : AppCompatActivity() {
         setContentView(R.layout.activity_proyect)
         setupUI()
         inicializarBaseDeDatos()
-        cargarProyectos()
+        cargarReparaciones()
         setupListeners()
     }
 
@@ -37,25 +37,25 @@ class MainReparacion : AppCompatActivity() {
     }
 
     private fun inicializarBaseDeDatos() {
-        EBaseDeDatos.tablaProyecto = ESqliteHelperReparacion(this)
+        EBaseDeDatos.tablaReparacion = ESqliteHelperReparacion(this)
     }
 
-    private fun cargarProyectos() {
-        val vehiculo = intent.getParcelableExtra<Vehiculo>("empresa")
-        val empresaId = vehiculo!!.id
-        reparacions = EBaseDeDatos.tablaProyecto!!.obtenerTodosLosProyectosPorIdEmpresa(empresaId).toCollection(ArrayList())
+    private fun cargarReparaciones() {
+        val vehiculo = intent.getParcelableExtra<Vehiculo>("vehiculo")
+        val vehiculoId = vehiculo!!.id
+        reparacions = EBaseDeDatos.tablaProyecto!!.obtenerTodasLasReparacionesPorIdVehiculo(vehiculoId).toCollection(ArrayList())
         reparacionAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, reparacions)
         val listView = findViewById<ListView>(R.id.lv_list_view)
         listView.adapter = reparacionAdapter
     }
 
     private fun setupListeners() {
-        val botonCrearProyecto = findViewById<Button>(R.id.btn_empresa)
-        val vehiculo = intent.getParcelableExtra<Vehiculo>("empresa")
-        botonCrearProyecto.setOnClickListener {
+        val botonCrearReparacion = findViewById<Button>(R.id.btn_empresa)
+        val vehiculo = intent.getParcelableExtra<Vehiculo>("vehiculo")
+        botonCrearReparacion.setOnClickListener {
             val intent = Intent(this, ECrudReparacion::class.java)
             intent.putExtra("opcion", "crear")
-            intent.putExtra("empresaId", vehiculo?.id.toString())
+            intent.putExtra("vehiculoId", vehiculo?.id.toString())
             lanzarActividadConResultado.launch(intent)
         }
 
@@ -76,7 +76,7 @@ class MainReparacion : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.mi_eliminar -> {
-                EBaseDeDatos.tablaProyecto!!.eliminarProyecto(reparacionSeleccionado.id)
+                EBaseDeDatos.tablaReparacion!!.eliminarReparacion(reparacionSeleccionado.id)
                 reparacions.removeAt(posicionSeleccionada)
                 reparacionAdapter.notifyDataSetChanged()
                 true
@@ -84,7 +84,7 @@ class MainReparacion : AppCompatActivity() {
             R.id.mi_editar -> {
                 val intent = Intent(this, ECrudReparacion::class.java)
                 intent.putExtra("opcion", "editar")
-                intent.putExtra("proyecto", reparacionSeleccionado)
+                intent.putExtra("reparacion", reparacionSeleccionado)
                 lanzarActividadConResultado.launch(intent)
                 true
             }
@@ -97,13 +97,13 @@ class MainReparacion : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val reparacion = result.data?.getParcelableExtra<Reparacion>("proyecto")
-            val vehiculo = intent.getParcelableExtra<Vehiculo>("empresa")
-            val empresaId = vehiculo!!.id
+            val reparacion = result.data?.getParcelableExtra<Reparacion>("reparacion")
+            val vehiculo = intent.getParcelableExtra<Vehiculo>("vehiculo")
+            val vehiculoId = vehiculo!!.id
             if (reparacion != null) {
                 reparacions.removeIf { it.id == reparacion.id }
 
-                if (reparacion.empresaId == empresaId) {
+                if (reparacion.empresaId == vehiculoId) {
                     reparacions.add(reparacion)
                 }
                 reparacionAdapter.notifyDataSetChanged()

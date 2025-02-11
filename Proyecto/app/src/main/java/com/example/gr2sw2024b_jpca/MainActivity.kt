@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setupUI()
         inicializarBaseDeDatos()
-        cargarEmpresas()
+        cargarVehiculos()
         setupListeners()
     }
 
@@ -36,20 +36,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun inicializarBaseDeDatos() {
-        EBaseDeDatos.tablaEmpresa = ESqliteHelperVehiculo(this)
-        EBaseDeDatos.tablaProyecto = ESqliteHelperReparacion(this)
+        EBaseDeDatos.tablaVehiculo = ESqliteHelperVehiculo(this)
+        EBaseDeDatos.tablaReparacion = ESqliteHelperReparacion(this)
     }
 
-    private fun cargarEmpresas() {
-        vehiculos = EBaseDeDatos.tablaEmpresa!!.obtenerTodasLasEmpresas().toCollection(ArrayList())
+    private fun cargarVehiculos() {
+        vehiculos = EBaseDeDatos.tablaVehiculo!!.obtenerTodosLosVehiculos().toCollection(ArrayList())
         vehiculoAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, vehiculos)
         val listView = findViewById<ListView>(R.id.lv_list_view)
         listView.adapter = vehiculoAdapter
     }
 
     private fun setupListeners() {
-        val botonCrearEmpresa = findViewById<Button>(R.id.btn_empresa)
-        botonCrearEmpresa.setOnClickListener {
+        val botonCrearVehiculo = findViewById<Button>(R.id.btn_empresa)
+        botonCrearVehiculo.setOnClickListener {
             val intent = Intent(this, ECrudVehiculo::class.java)
             intent.putExtra("opcion", "crear")
             lanzarActividadConResultado.launch(intent)
@@ -74,19 +74,19 @@ class MainActivity : AppCompatActivity() {
             R.id.mi_editar -> {
                 val intent = Intent(this, ECrudVehiculo::class.java)
                 intent.putExtra("opcion", "editar")
-                intent.putExtra("empresa", vehiculoSeleccionada)
+                intent.putExtra("vehiculo", vehiculoSeleccionada)
                 lanzarActividadConResultado.launch(intent)
                 true
             }
             R.id.mi_eliminar -> {
-                EBaseDeDatos.tablaEmpresa!!.eliminarEmpresa(vehiculoSeleccionada.id)
+                EBaseDeDatos.tablaVehiculo!!.eliminarVehiculo(vehiculoSeleccionada.id)
                 vehiculos.removeAt(posicionSeleccionada)
                 vehiculoAdapter.notifyDataSetChanged()
                 true
             }
             R.id.mi_proyecto -> {
                 val intent = Intent(this, MainReparacion::class.java)
-                intent.putExtra("empresa", vehiculoSeleccionada)
+                intent.putExtra("vehiculo", vehiculoSeleccionada)
                 startActivity(intent)
                 true
             }
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
-            val vehiculo = result.data?.getParcelableExtra<Vehiculo>("empresa")
+            val vehiculo = result.data?.getParcelableExtra<Vehiculo>("vehiculo")
             if (vehiculo != null) {
                 vehiculos.removeIf { it.id == vehiculo.id }
                 vehiculos.add(vehiculo)
