@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900178680683",
+    "project_id": "mov-2024b-sw-gr2-jpca",
+    "storage_bucket": "mov-2024b-sw-gr2-jpca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900178680683:android:68e3a260965f2f4d668a2e",
+        "android_client_info": {
+          "package_name": "com.example.gr2sw2024b_jpca"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTTFpWmBr5DJjlFHIRWtZfBYAySemRxu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
